@@ -5,10 +5,11 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import {useNavigation, RouteProp, useRoute} from '@react-navigation/native';
+import MainTab, {MainTabNavigationScreenParams} from './MainTab';
 
 // RootStackParamList 타입을 선언할 때는 interface가 아닌 type을 사용
 type RootStackParamList = {
-  Home: undefined;
+  MainTab: MainTabNavigationScreenParams;
   Detail: {
     id: number;
   };
@@ -17,19 +18,6 @@ export type RootStackNavigationProp =
   NativeStackNavigationProp<RootStackParamList>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-function HomeScreen() {
-  const navigation = useNavigation<RootStackNavigationProp>();
-  const onPress = () => {
-    navigation.navigate('Detail', {id: 1});
-  };
-  return (
-    <View>
-      <Text>Home</Text>
-      <Button title={'Open Detail'} onPress={onPress} />
-    </View>
-  );
-}
 
 // RouteProp 사용 시
 // 첫 번째 Gereric은 현재 사용 중인 내비게이션의 라우트 파라미터 타입을 위해 선언한 RootStackParamList를 넣고
@@ -48,7 +36,11 @@ function DetailScreen() {
 export default function RootStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen component={HomeScreen} name={'Home'} />
+      <Stack.Screen
+        component={MainTab}
+        name={'MainTab'}
+        options={{headerShown: false}}
+      />
       <Stack.Screen component={DetailScreen} name={'Detail'} />
     </Stack.Navigator>
   );
