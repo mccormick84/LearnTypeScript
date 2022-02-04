@@ -1,17 +1,11 @@
 import React from 'react';
-import Profile from './Profile';
-import {SafeAreaView, Text} from 'react-native';
-import MessageForm from './MessageForm';
-import Counter from './Counter';
+import {NavigationContainer} from '@react-navigation/native';
+import RootStack from './screens/RootStack';
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <Profile name={'John Doe'}>
-        <Text>Hello World</Text>
-      </Profile>
-      <MessageForm />
-      <Counter />
-    </SafeAreaView>
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
   );
 }
